@@ -1,14 +1,17 @@
 class StringCalculator
   def add(input)
     return 0 if input.empty?
-    
-    if input.start_with?("//")
+
+    numbers = if input.start_with?("//")
       delimiter, numbers = input[2..].split("\n", 2)
-      numbers.split(delimiter).map(&:to_i).sum
+      numbers.split(delimiter).map(&:to_i)
     else
-      numbers = input.split(/,|\n/).map(&:to_i)
-      numbers.sum
+      input.split(/,|\n/).map(&:to_i)
     end
 
+    negatives = numbers.select { |n| n < 0 }
+    raise "negative numbers not allowed: #{negatives.join(", ")}" unless negatives.empty?
+
+    numbers.sum
   end
 end
