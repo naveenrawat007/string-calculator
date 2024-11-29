@@ -1,7 +1,14 @@
 class StringCalculator
   def add(input)
     return 0 if input.empty?
-    numbers = input.split(/,|\n/).map(&:to_i) # Split on commas or newlines
-    numbers.sum
+    
+    if input.start_with?("//")
+      delimiter, numbers = input[2..].split("\n", 2)
+      numbers.split(delimiter).map(&:to_i).sum
+    else
+      numbers = input.split(/,|\n/).map(&:to_i)
+      numbers.sum
+    end
+
   end
 end
