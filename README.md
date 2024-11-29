@@ -6,4 +6,4 @@ Steps to Run the test cases:
 
 * Bundle install
 
-* bundle exec spec
+* bundle exec rspec
